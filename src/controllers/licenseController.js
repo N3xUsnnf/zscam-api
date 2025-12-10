@@ -1,4 +1,4 @@
-const pool = require('../config/database');
+const { getPool } = require('../config/database');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
@@ -39,6 +39,7 @@ exports.activate = async (req, res) => {
     
     let client;
     try {
+        const pool = getPool();
         client = await pool.connect();
         await client.query('BEGIN');
 
@@ -151,6 +152,7 @@ exports.validate = async (req, res) => {
     }
     
     try {
+        const pool = getPool();
         const result = await pool.query(
             'SELECT * FROM licenses WHERE code = $1',
             [licenseData.code]
@@ -250,6 +252,7 @@ exports.generate = async (req, res) => {
     }
     
     try {
+        const pool = getPool();
         const codes = [];
         
         for (let i = 0; i < quantityInt; i++) {

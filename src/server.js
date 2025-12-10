@@ -1,8 +1,9 @@
 const app = require('./app');
+const { getPool } = require('./config/database');
 
 // Para desenvolvimento local
 if (process.env.NODE_ENV !== 'production') {
-    const pool = require('./config/database');
+    const pool = getPool();
     const PORT = process.env.PORT || 3000;
     
     pool.query('SELECT NOW()', (err, res) => {
