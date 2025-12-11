@@ -2,6 +2,8 @@ CREATE TABLE IF NOT EXISTS licenses (
     id SERIAL PRIMARY KEY,
     code VARCHAR(50) UNIQUE NOT NULL,
     device_id VARCHAR(255),
+    device_Country VARCHAR(100),
+    device_ipAddress VARCHAR(100),
     device_fingerprint VARCHAR(255),
     device_systemVersion VARCHAR(100),
     device_model VARCHAR(100),
